@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Text Summary",
+    "version": "1.0",
+    "description": "Generate summaries of highlighted text using OpenAI API",
+    "permissions": ["tabs", "activeTab"],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline'"
+    },
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["content_scripts.js"],
+          "css": ["content.css"]
+        }
+      ]
+  }
+  

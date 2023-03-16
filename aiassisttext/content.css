@@ -1,0 +1,13 @@
+#summary-tooltip {
+    position: absolute;
+    z-index: 10000;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 300px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
