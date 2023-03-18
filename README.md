@@ -14,7 +14,7 @@ Write a chrome extenstion that uses the openai API to generate summaries of high
 ```
 
 
-See here for the full conversation. 
+See [the full conversation](/CONVERSATION). 
 
 
 # Components 
