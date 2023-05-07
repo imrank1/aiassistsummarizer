@@ -8,7 +8,7 @@ on:
 
 jobs:
   check-tasks:
-    runs-on: ubuntu-latest
+    runs-on: node16
 
     steps:
     - name: Checkout repository
