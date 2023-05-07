@@ -1,0 +1,35 @@
+name: Check PR Tasks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  check-tasks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install jq
+      run: sudo apt-get install -y jq
+
+    - name: Check PR tasks
+      run: |
+        PR_BODY=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)
+        UNCHECKED_TASKS=$(echo "$PR_BODY" | grep -Pzo '(?s)(?<=- \[ \]).*?(?=\n)' | tr -d '\0')
+
+        if [ ! -z "$UNCHECKED_TASKS" ]; then
+          echo "Found unchecked tasks:"
+          echo "$UNCHECKED_TASKS"
+          echo "Please complete all tasks before merging the PR."
+          exit 1
+        else
+          echo "All tasks completed!"
+        fi
+      env:
+        GITHUB_EVENT_PATH: ${{ github.event_path }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
